@@ -294,14 +294,14 @@ window.CONFIG = {
       pinned: true
     },
     {
-      category: 'Social',
-      name: 'Twitch',
+      category: 'Education',
+      name: 'Classroom',
       icon: 'twitch',
-      url: 'https://twitch.tv',
-      normalisedURL: 'twitch.tv',
+      url: 'https://classroom.google.com/',
+      normalisedURL: 'classroom.google.com',
       triggers: [
-        'tw',
-        'twitch',
+        'gc',
+        'class',
       ],
       commands: {
         search: {
@@ -313,7 +313,7 @@ window.CONFIG = {
       },
       bgColor: {
         type: 'solid',
-        color: '#8c44f7'
+        color: '#d6be09'
       },
       textColor: '#000',
       pinned: true
