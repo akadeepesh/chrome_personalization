@@ -296,7 +296,7 @@ window.CONFIG = {
     {
       category: 'Education',
       name: 'Classroom',
-      icon: 'twitch',
+      icon: 'classroom',
       url: 'https://classroom.google.com/',
       normalisedURL: 'classroom.google.com',
       triggers: [
