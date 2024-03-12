@@ -369,7 +369,7 @@ window.CONFIG = {
       icon: "amazon",
       key: "KeyA",
       url: "https://www.amazon.in/",
-      normalisedURL: "amazon.com",
+      normalisedURL: "amazon.in",
       bgColor: {
         type: "gradient",
         gradientType: "linear",
