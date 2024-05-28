@@ -381,23 +381,23 @@ window.CONFIG = {
     },
     {
       category: "Education",
-      name: "Wikipedia",
-      icon: "wikipedia",
-      triggers: ["wi", "wiki", "wikipedia"],
-      url: "https://www.wikipedia.org",
-      normalisedURL: "wikipedia.org",
+      name: "Groww",
+      icon: "groww",
+      triggers: ["gr", "grow"],
+      url: "https://groww.in/stocks/user/explore",
+      normalisedURL: "groww.in/stocks/user/explore",
       commands: {
         search: {
           template: "{@}/?search={$}",
         },
         go: {
-          template: "{@}/wiki/{$}",
+          template: "{@}/groww/{$}",
         },
       },
       bgColor: {
         type: "gradient",
         gradientType: "linear",
-        colors: ["#e1e1e3", "#bbb"],
+        colors: ["#5076ee", "#86b0bc"],
         stops: [60, 100],
       },
       textColor: "#000",
