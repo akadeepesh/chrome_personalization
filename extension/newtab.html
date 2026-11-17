@@ -10,44 +10,60 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <main class="app">
-      <div class="clock" id="clock" hidden></div>
+    <!-- Site wave: shape is computed per frame in js/wave.js -->
+    <div class="blob" id="blob" aria-hidden="true">
+      <canvas class="wave-canvas" id="waveCanvas"></canvas>
+      <div class="wave-label" id="waveLabel"></div>
+    </div>
 
-      <div class="search">
-        <div class="bar">
-          <span class="icon" id="barIcon" aria-hidden="true"></span>
-          <input
-            id="q"
-            type="text"
-            role="combobox"
-            aria-label="Search or type a shortcut"
-            aria-controls="results"
-            aria-autocomplete="list"
-            aria-expanded="false"
-            autocomplete="off"
-            spellcheck="false"
-            placeholder="Search, or type a shortcut…"
-          />
+    <main class="stage" id="stage">
+      <svg class="chevron" id="chevron" viewBox="0 0 50 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M6,6 L44,50 L6,94" vector-effect="non-scaling-stroke" />
+      </svg>
+
+      <section class="query empty" id="query">
+        <input
+          id="q"
+          type="text"
+          role="combobox"
+          aria-label="Search or type a shortcut"
+          aria-controls="results"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <div class="hint" id="hint" aria-live="polite"></div>
+        <ul class="chips" id="results" role="listbox"></ul>
+        <div class="answer" id="ai" hidden aria-live="polite">
+          <header><span id="aiQuestion"></span><button type="button" class="link" id="aiClose">esc</button></header>
+          <div class="answer-body" id="aiBody"></div>
         </div>
-        <ul class="results" id="results" role="listbox" hidden></ul>
-      </div>
-
-      <section class="ai" id="ai" hidden aria-live="polite">
-        <header>
-          <span id="aiQuestion"></span>
-          <button type="button" class="link" id="aiClose" aria-label="Close answer">Esc</button>
-        </header>
-        <div class="ai-body" id="aiBody"></div>
       </section>
-
-      <nav class="tiles" id="tiles" aria-label="Pinned sites"></nav>
     </main>
 
-    <button type="button" class="gear" id="openSettings" aria-label="Settings" title="Settings">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    <section class="menu" id="menu" aria-label="Pinned sites" aria-hidden="true">
+      <div class="clock" id="clock"></div>
+      <div class="progress" title="Day progress"><span id="progress"></span></div>
+      <div class="pager">
+        <button type="button" class="arrow" id="prev" aria-label="Previous page">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="viewport" id="viewport"><div class="track" id="track"></div></div>
+        <button type="button" class="arrow" id="next" aria-label="Next page">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <button type="button" class="corner gear" id="gearBtn" aria-label="Settings" title="Settings">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M19.14 12.94a7.5 7.5 0 0 0 .05-.94 7.5 7.5 0 0 0-.05-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54A.48.48 0 0 0 13.92 2h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.72 8.47a.48.48 0 0 0 .12.61l2.03 1.58a7.5 7.5 0 0 0 0 1.88l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.25.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>
+    </button>
+    <button type="button" class="corner menu-btn" id="menuBtn" aria-label="Pinned sites" title="Pinned sites (↓)" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 8h14M5 12h14M5 16h14"/></svg>
     </button>
 
-    <dialog id="settings" aria-label="Settings"></dialog>
+    <aside class="panel" id="panel" aria-label="Settings" aria-hidden="true"></aside>
 
     <script type="module" src="js/main.js"></script>
   </body>

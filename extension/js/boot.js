@@ -10,7 +10,7 @@
     ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
     : boot.mode;
   root.dataset.theme = mode;
-  if (boot.accent) root.style.setProperty('--accent', boot.accent);
+  if (boot.background) root.style.setProperty('--bg', boot.background);
 
   // Chrome keeps focus in the omnibox on new-tab override pages. Re-navigating the tab
   // to our own URL moves focus into the page so you can type immediately.

@@ -1,12 +1,12 @@
 // Search engines. {q} = URL-encoded query. `suggest` picks the suggestion provider.
 export const ENGINES = {
-  google: { name: 'Google', search: 'https://www.google.com/search?q={q}', suggest: 'google' },
-  duckduckgo: { name: 'DuckDuckGo', search: 'https://duckduckgo.com/?q={q}', suggest: 'duckduckgo' },
-  bing: { name: 'Bing', search: 'https://www.bing.com/search?q={q}', suggest: 'google' },
-  brave: { name: 'Brave', search: 'https://search.brave.com/search?q={q}', suggest: 'google' },
-  ecosia: { name: 'Ecosia', search: 'https://www.ecosia.org/search?q={q}', suggest: 'google' },
-  perplexity: { name: 'Perplexity', search: 'https://www.perplexity.ai/search?q={q}', suggest: 'google' },
-  yandex: { name: 'Yandex', search: 'https://ya.ru/search/?text={q}', suggest: 'google' },
+  google: { name: 'Google', search: 'https://www.google.com/search?q={q}', suggest: 'google', bg: '#aaaaaa', fg: '#ffffff' },
+  duckduckgo: { name: 'DuckDuckGo', search: 'https://duckduckgo.com/?q={q}', suggest: 'duckduckgo', bg: '#e37151', fg: '#e8e8e8' },
+  bing: { name: 'Bing', search: 'https://www.bing.com/search?q={q}', suggest: 'google', bg: 'linear-gradient(#3ab0f1, #2351dd, #40d1da)', fg: '#e8e8e8' },
+  brave: { name: 'Brave', search: 'https://search.brave.com/search?q={q}', suggest: 'google', bg: 'linear-gradient(#fb542b, #343546)', fg: '#e8e8e8' },
+  ecosia: { name: 'Ecosia', search: 'https://www.ecosia.org/search?q={q}', suggest: 'google', bg: '#2e8b57', fg: '#ffffff' },
+  perplexity: { name: 'Perplexity', search: 'https://www.perplexity.ai/search?q={q}', suggest: 'google', bg: '#20808d', fg: '#ffffff' },
+  yandex: { name: 'Yandex', search: 'https://ya.ru/search/?text={q}', suggest: 'google', bg: '#fc3f1d', fg: '#000000' },
 };
 
 export const AI_DEFAULT_MODELS = {
@@ -28,7 +28,7 @@ const site = (s) => ({ key: '', search: '', go: '', goLabel: '', icon: '', bg: '
 
 export const DEFAULT_SITES = [
   site({ id: 'youtube', name: 'YouTube', url: 'https://www.youtube.com', triggers: ['y', 'yt', 'youtube'], key: 'y', icon: 'youtube',
-    search: '{base}/results?search_query={q}', go: 'https://youtu.be/{q}', goLabel: 'video', bg: '#f30002' }),
+    search: '{base}/results?search_query={q}', go: 'https://youtu.be/{q}', goLabel: 'video', bg: '#f30002', fg: '#212121' }),
   site({ id: 'telegram', name: 'Telegram', url: 'https://web.telegram.org', triggers: ['t', 'tg', 'telegram'], key: 't', icon: 'telegram',
     go: 'https://t.me/{q}', bg: 'radial-gradient(#29aaed 40%, #25a4e2)' }),
   site({ id: 'whatsapp', name: 'WhatsApp', url: 'https://web.whatsapp.com', triggers: ['w', 'wa', 'whatsapp'], key: 'w', icon: 'whatsApp',
@@ -70,12 +70,13 @@ export const DEFAULT_SITES = [
 ];
 
 export const DEFAULT_SETTINGS = {
-  version: 1,
-  theme: { mode: 'auto', accent: '#7c5cff' },
+  version: 2,
+  theme: { mode: 'auto', background: '' },
   engine: 'google',
   stealFocus: true,
-  showClock: true,
-  showTiles: true,
+  animationSpeed: 400,
+  chevron: { thickness: 15, size: 20 },
+  menu: { rows: 2, columns: 4, clock24: false },
   suggestions: true,
   calculator: true,
   currency: true,

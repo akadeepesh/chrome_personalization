@@ -36,7 +36,7 @@ export function toUrl(q) {
 function siteRow(s) {
   const trigger = s.triggers?.[0];
   return {
-    type: 'site', site: s, title: s.name, sub: hostname(s.url), url: s.url,
+    type: 'site', kind: 'open', site: s, title: s.name, sub: hostname(s.url), url: s.url,
     // Tab turns "yt" into "yt?" so you can search the site straight away.
     complete: trigger && s.search ? `${trigger}?` : undefined,
   };
@@ -64,8 +64,8 @@ export function buildResults(input, settings) {
     if (tpl) {
       const label = kind === 'search' ? `Search ${cmdSite.name}` : `Go to ${cmdSite.name}${cmdSite.goLabel ? ' ' + cmdSite.goLabel : ''}`;
       out.push(term
-        ? { type: 'site', site: cmdSite, title: term, sub: label, url: fillTemplate(tpl, cmdSite, term, kind) }
-        : { type: 'site', site: cmdSite, title: cmdSite.name, sub: `${label}: start typing`, url: cmdSite.url });
+        ? { type: 'site', kind, site: cmdSite, title: term, sub: label, url: fillTemplate(tpl, cmdSite, term, kind) }
+        : { type: 'site', kind, site: cmdSite, title: cmdSite.name, sub: `${label}: start typing`, url: cmdSite.url });
     }
   }
 

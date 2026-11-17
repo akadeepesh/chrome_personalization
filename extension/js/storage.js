@@ -21,6 +21,8 @@ export function normalize(s = {}) {
     ...d,
     ...s,
     theme: { ...d.theme, ...s.theme },
+    chevron: { ...d.chevron, ...s.chevron },
+    menu: { ...d.menu, ...s.menu },
     ai: { ...d.ai, ...s.ai },
     sites: Array.isArray(s.sites) ? s.sites : d.sites,
     version: d.version,
@@ -49,5 +51,5 @@ export function saveSecret(secret) {
 
 // Small synchronous copy read by boot.js before first paint.
 function cacheBoot(s) {
-  localStorage.setItem('nt:boot', JSON.stringify({ mode: s.theme.mode, accent: s.theme.accent, stealFocus: s.stealFocus }));
+  localStorage.setItem('nt:boot', JSON.stringify({ mode: s.theme.mode, background: s.theme.background, stealFocus: s.stealFocus }));
 }

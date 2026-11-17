@@ -1,14 +1,14 @@
 # DC New Tab
 
-A fast, keyboard-first new tab page for Chrome (and other Chromium browsers). Plain HTML, CSS and JavaScript, with no build step and no dependencies.
+A minimal, keyboard-first new tab page for Chrome (and other Chromium browsers). The idle screen is a single chevron. Start typing and your text appears large next to it, with suggestions underneath. When the text matches a site, a shape in that site's colour slides in from the left. Plain HTML, CSS and JavaScript, with no build step and no dependencies.
 
 - **Site shortcuts:** type `yt` and press Enter to open YouTube, `r/rust` to go to a subreddit, `gh?vite` to search GitHub.
 - **Search** with your engine of choice, with live suggestions.
 - **Calculator:** `2^10 / 4`, `sqrt(2)*pi`. Press Enter to copy the result.
 - **Currency:** `100 usd to inr`, using daily rates and no API key.
 - **Quick AI answers:** press Shift+Enter, or start with `!`. Uses Claude or OpenAI with your own key.
-- **Pinned tiles** with single-key shortcuts, light/dark themes and an accent color.
-- **Settings UI:** add, edit and reorder sites, and import/export everything as JSON.
+- **Menu:** press ↓ on an empty search box (or ≡ in the corner) to see the clock, a day-progress bar and your pinned sites. Page through them with the arrows, by dragging or with the scroll wheel.
+- **Settings panel** (⚙, top right): engine, theme, background, chevron thickness and size, animation speed, menu layout, AI, and the site editor. Changes preview live, then ✓ saves and ✕ cancels. Everything can be exported and imported as JSON.
 
 ## Install
 
@@ -25,6 +25,7 @@ A fast, keyboard-first new tab page for Chrome (and other Chromium browsers). Pl
 | `r/programming` | Go to a path on the site (its *Go template*) |
 | `!question`, or Shift+Enter | Ask AI |
 | ↑ / ↓, Tab | Move through results, complete the selected one |
+| ↓ on an empty box | Open the menu (← / → to change pages, Esc or ↑ to close) |
 | Ctrl/⌘ + Enter, middle-click | Open in a new tab |
 | Esc | Close the answer, clear the input, then unfocus it |
 | Single key (search box unfocused) | Open the pinned site with that key (Shift for a new tab) |
@@ -32,7 +33,7 @@ A fast, keyboard-first new tab page for Chrome (and other Chromium browsers). Pl
 
 ## Default shortcuts
 
-Each single-letter key is also a one-letter trigger. Press the key with the search box unfocused, or type the letter and press Enter.
+Each single-letter key is also a one-letter trigger. Type the letter and press Enter, or press the key while the menu is open or the search box is unfocused.
 
 | Key | Site | | Key | Site |
 | --- | --- | --- | --- | --- |
@@ -48,7 +49,7 @@ Other sites only have word triggers: `cl` Claude, `gem` Gemini, `so` Stack Overf
 
 ## Customize
 
-Open the ⚙ button in the bottom right. Templates use `{base}` for the site URL and `{q}` for what you typed. A tile icon can be a built-in name (see [`extension/js/icons.js`](extension/js/icons.js)), an `https` image URL, or blank to use the site's favicon. The default sites live in [`extension/js/defaults.js`](extension/js/defaults.js).
+Open the ⚙ button in the top right. Templates use `{base}` for the site URL and `{q}` for what you typed. A tile icon can be a built-in name (see [`extension/js/icons.js`](extension/js/icons.js)), an `https` image URL, or blank to use the site's favicon. The default sites live in [`extension/js/defaults.js`](extension/js/defaults.js).
 
 ## Privacy
 
@@ -56,7 +57,7 @@ Everything is stored locally in `chrome.storage.local`. The page makes network r
 
 | Feature | Request goes to |
 | --- | --- |
-| Suggestions | `suggestqueries.google.com` or `duckduckgo.com` |
+| Suggestions | `suggestqueries.google.com` or `duckduckgo.com` (extension); `www.google.com/complete` loaded as a script (plain web page) |
 | Currency | `open.er-api.com` (cached for 12 h) |
 | AI | `api.anthropic.com` or `api.openai.com`, with your key |
 
