@@ -52,8 +52,7 @@ function update() {
       const c = parseCurrency(q);
       if (c) convert(c).then((row) => { if (id === seq && row) { extras.currency = row; compose(); } }).catch(() => {});
     }
-    // Suggestion endpoints only allow cross-origin calls via extension host permissions.
-    if (settings.suggestions && globalThis.chrome?.runtime?.id) {
+    if (settings.suggestions) {
       suggest(q, engineOf(settings).suggest, signal)
         .then((items) => { if (id === seq) { extras.suggestions = items; compose(); } })
         .catch(() => {});
