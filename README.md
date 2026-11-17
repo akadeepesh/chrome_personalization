@@ -16,6 +16,8 @@ A fast, keyboard-first new tab page for Chrome (and other Chromium browsers). Pl
 2. Click **Load unpacked** and pick the [`extension/`](extension/) folder.
 3. Open a new tab.
 
+There's also a web preview at [akadeepesh.github.io/chrome_personalization](https://akadeepesh.github.io/chrome_personalization/). It keeps settings in `localStorage` and has no search suggestions or favicons, because those need the extension's permissions.
+
 ## Keys
 
 | Input | Does |
