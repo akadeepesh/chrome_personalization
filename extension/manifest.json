@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "DC New Tab",
+  "description": "A keyboard-first new tab: site shortcuts, search suggestions, calculator, currency and quick AI answers.",
+  "version": "1.0.0",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "icons": {
+    "128": "icons/icon.png"
+  },
+  "permissions": ["storage", "favicon"],
+  "host_permissions": [
+    "https://suggestqueries.google.com/*",
+    "https://duckduckgo.com/*",
+    "https://open.er-api.com/*",
+    "https://api.anthropic.com/*",
+    "https://api.openai.com/*"
+  ]
+}
