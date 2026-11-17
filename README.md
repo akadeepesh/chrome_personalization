@@ -82,5 +82,3 @@ extension/
   js/icons.js        bundled SVG icons
   js/dom.js          element helper, icons, safe Markdown
 ```
-
-The files in the repo root (`index.html`, `config.js`, `icons.js`, `fonts/`) are the old prebuilt version, kept for reference.
